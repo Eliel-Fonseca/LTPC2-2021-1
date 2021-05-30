@@ -1,0 +1,49 @@
+import cherrypy
+
+class ProjetoJokenpo(object):
+    @cherrypy.expose
+    def index(self):
+        return """
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <link rel="stylesheet"
+                  href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+                  <title> Jokenpo Avançado </title>
+        </head>
+        <body>
+            <h1>Jokenpo Expert<h1>
+            <br>
+            <a href="https://www.youtube.com/watch?v=OtzekNVWs30">Video explicativo sobre o Jokenpo Avançado</a>
+            <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/OtzekNVWs30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <br>
+            <form method="get" action="resultado"
+                <p>Escolha uma jogada - Pedra, Papel, Tesoura, Largarto ou Spock</p>
+                <input type="text" value="nome"/>
+                <button class="button is-primary is-focused" type="subimit" value="pedra" name="result">Pedra</button>
+                
+                <button class="button is-link is-focused" type="subimit" value="Papel" name="result1" >Papel</button>
+               
+                <button class="button is-info is-focused" type="subimit" value="Tesoura" name="result2">Tesoura</button>
+               
+                <button class="button is-success is-focused" type="subimit" value="Largato" name="result3">Lagarto</button>
+                
+                <button class="button is-danger is-focused" type="subimit" value="Spock" name="result4">Spock</button>
+                
+            </form>
+        </body>
+     </html>"""
+
+    @cherrypy.expose
+    def resultado(self,result, result1, result2, result3, result4):
+        return f"""<html>
+        <head></head>
+        <body>
+            <p> a sua resposta foi {result}
+            <a href="http://localhost:8080">Voltar</a>
+        </body>
+    </html>"""
+
+if __name__ == '__main__':
+    cherrypy.quickstart(ProjetoJokenpo())
